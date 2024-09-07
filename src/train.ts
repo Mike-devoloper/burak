@@ -29,14 +29,36 @@ MASALAN: getPositive([1, -4, 2]) return qiladi "12"
 
 */
 
-function getPositive(arr) {
-    const result = arr
-        .filter(value => typeof value === 'number' && value > 0) 
-        .join(""); 
+// function getPositive(arr) {
+//     const result = arr
+//         .filter(value => typeof value === 'number' && value > 0) 
+//         .join(""); 
 
+//     console.log(result);
+//     return result;
+// }
+
+// getPositive([5, 21, 12, 78, -8]); 
+
+
+
+// H2-TASK: 
+
+// Shunday function tuzing, unga string argument pass bolsin. Function ushbu agrumentdagi digitlarni yangi stringda return qilsin
+// MASALAN: getDigits("m14i1t") return qiladi "141"
+
+
+function getNumbers(string) {
+    let result = '';
+    for(let i = 0;  i < string.length; i++) {
+        if(!isNaN(string[i]) && string[i] !== '' ) {
+            result += string[i];
+        }
+    }
     console.log(result);
     return result;
+  
 }
 
-getPositive([5, 21, 12, 78, -8]); 
 
+getNumbers('hello9808');
