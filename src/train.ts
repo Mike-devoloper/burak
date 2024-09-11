@@ -74,3 +74,11 @@ MASALAN: getPositive([1, -4, 2]) return qiladi "12"
 
  -ERROR handling
 */
+
+
+/* Most used API's
+Traditional API
+REST API 
+Graphql API
+...
+*/
