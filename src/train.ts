@@ -48,17 +48,29 @@ MASALAN: getPositive([1, -4, 2]) return qiladi "12"
 // MASALAN: getDigits("m14i1t") return qiladi "141"
 
 
-function getNumbers(string) {
-    let result = '';
-    for(let i = 0;  i < string.length; i++) {
-        if(!isNaN(string[i]) && string[i] !== '' ) {
-            result += string[i];
-        }
-    }
-    console.log(result);
-    return result;
+// function getNumbers(string) {
+//     let result = '';
+//     for(let i = 0;  i < string.length; i++) {
+//         if(!isNaN(string[i]) && string[i] !== '' ) {
+//             result += string[i];
+//         }
+//     }
+//     console.log(result);
+//     return result;
   
-}
+// }
 
 
-getNumbers('hello9808');
+// getNumbers('hello9808');
+
+
+/* Project Standarts
+ - Logging standarts
+ - Naming standarts
+   CAMEL => function, method, variable 
+   PASCAL => class,
+   KEBAB => folder
+   SNAKE => css
+
+ -ERROR handling
+*/
