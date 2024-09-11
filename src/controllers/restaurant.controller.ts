@@ -11,6 +11,7 @@ try {
     //SERVICE MODEL
     //...
     res.send("Home page");
+    //send / json / redirect / end / render
 } catch (err) { //ERROR PROTECTION
     console.log("something went wrong", err);
 }
@@ -25,14 +26,36 @@ restaurantController.goLogin = (req: Request, res: Response) => {
     }
     }
 
- restaurantController.goSign = (req: Request, res: Response) => {
-     try {
-         console.log("goSignUp");
-         res.send("Sign up");
-      } catch (err) {
-        console.log("something went wrong", err);
-  }
-    }
+
+    restaurantController.goLoginProcces = (req: Request, res: Response) => {
+        try {
+            console.log("GoLoginProcces");
+            res.send("DONE");
+         } catch (err) {
+           console.log("something went wrong", err);
+     }
+       }
+
+
+       restaurantController.goSign = (req: Request, res: Response) => {
+        try {
+            console.log("goSignUp");
+            res.send("Sign up");
+         } catch (err) {
+           console.log("something went wrong", err);
+     }
+       }
+
+
+
+       restaurantController.proccessSignUp = (req: Request, res: Response) => {
+        try {
+            console.log("proccessSignUp");
+            res.send("Sign up proccess");
+         } catch (err) {
+           console.log("something went wrong", err);
+     }
+       }
 
 
     export default restaurantController;
