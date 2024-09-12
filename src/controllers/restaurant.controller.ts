@@ -1,5 +1,5 @@
 import express, { Request, Response} from "express";
-import { MemberInput } from "../libs/types/member";
+import { MemberInput, LoginInput } from "../libs/types/member";
 import {T} from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { MemberType } from "../libs/types/enums/member.enum";
@@ -29,12 +29,18 @@ restaurantController.goLogin = (req: Request, res: Response) => {
     }
 
 
-    restaurantController.goLoginProcces = (req: Request, res: Response) => {
+    restaurantController.goLoginProcces = async(req: Request, res: Response) => {
         try {
             console.log("GoLoginProcces");
-            res.send("DONE");
+            console.log("body:", req.body);
+            const input: LoginInput = req.body;
+
+            const memberService = new MemberService();
+            const result = await memberService.processLogin(input);
+            res.send(result);
          } catch (err) {
            console.log("something went wrong", err);
+           res.send(err);
      }
        }
 
