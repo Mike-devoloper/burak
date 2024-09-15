@@ -14,7 +14,7 @@ try {
     //LOGIC
     //SERVICE MODEL
     //...
-    res.send("Home page");
+    res.render("home");
     //send / json / redirect / end / render
 } catch (err) { //ERROR PROTECTION
     console.log("something went wrong", err);
@@ -24,11 +24,20 @@ try {
 restaurantController.goLogin = (req: Request, res: Response) => {
     try {
         console.log("goLogin");
-        res.send("Login page");
+        res.render("login");
     } catch (err) {
      console.log("something went wrong", err);
     }
     }
+
+    restaurantController.goSign = (req: Request, res: Response) => {
+      try {
+          console.log("goSignUp");
+          res.render("signup");
+       } catch (err) {
+         console.log("something went wrong", err);
+   }
+     }
 
 
     restaurantController.goLoginProcces = async(req: Request, res: Response) => {
@@ -43,16 +52,6 @@ restaurantController.goLogin = (req: Request, res: Response) => {
          } catch (err) {
            console.log("something went wrong", err);
            res.send(err);
-     }
-       }
-
-
-       restaurantController.goSign = (req: Request, res: Response) => {
-        try {
-            console.log("goSignUp");
-            res.send("Sign up");
-         } catch (err) {
-           console.log("something went wrong", err);
      }
        }
 
