@@ -89,24 +89,29 @@ Shunday function yozing, u parametridagi array ichida eng kop takrorlangan raqam
 MASALAN: majorityElement([1,2,3,4,5,4,3,4]) return 4
 */
 
-function majorityElement(arr) {
-    const elementCount = {};
-    let maxElement = arr[0];
-    let maxCount = 0;
+// function majorityElement(arr) {
+//     const elementCount = {};
+//     let maxElement = arr[0];
+//     let maxCount = 0;
   
   
-    arr.forEach(num => {
-      elementCount[num] = (elementCount[num] || 0) + 1;
+//     arr.forEach(num => {
+//       elementCount[num] = (elementCount[num] || 0) + 1;
   
   
-      if (elementCount[num] > maxCount) {
-        maxElement = num;
-        maxCount = elementCount[num];
-      }
-    });
+//       if (elementCount[num] > maxCount) {
+//         maxElement = num;
+//         maxCount = elementCount[num];
+//       }
+//     });
   
-    return maxElement;
-  }
+//     return maxElement;
+//   }
   
 
-  console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); 
+//   console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); 
+
+/* 
+Traditional FD => BSSR (BURAK ADMIN)=> EJS 
+MODERN FD => SPA  (USER's application)=> REACT 
+*/

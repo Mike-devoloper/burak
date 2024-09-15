@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 
 //Routing 
 // SSR: EJS
-app.use("/admin", routerAdmin);
+app.use("/admin", routerAdmin); //BSSR 
 app.use("/", router)  //Middleware Design Pattern /SPA: REACT
 
 

@@ -4,6 +4,8 @@ import {T} from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { MemberType } from "../libs/types/enums/member.enum";
 
+const memberService = new MemberService();
+
 const restaurantController: T = {};
 
 restaurantController.goHome = (req: Request, res: Response) => {
@@ -33,10 +35,10 @@ restaurantController.goLogin = (req: Request, res: Response) => {
         try {
             console.log("GoLoginProcces");
             console.log("body:", req.body);
-            const input: LoginInput = req.body;
+            const input: LoginInput = req.body,
+            result = await memberService.processLogin(input);
+            //TODO: SESSIONS AUTHENTICATION
 
-            const memberService = new MemberService();
-            const result = await memberService.processLogin(input);
             res.send(result);
          } catch (err) {
            console.log("something went wrong", err);
@@ -63,10 +65,9 @@ restaurantController.goLogin = (req: Request, res: Response) => {
 
             const newMember: MemberInput = req.body;
             newMember.memberType = MemberType.RESTAURANT;
-            const memberService = new MemberService();
-
-
             const result = await memberService.proccessSignup(newMember);
+          //TODO: SESSIONS AUTHENTICATION
+
             res.send(result);
          } catch (err) {
            console.log("something went wrong", err);
