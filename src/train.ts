@@ -115,3 +115,27 @@ MASALAN: majorityElement([1,2,3,4,5,4,3,4]) return 4
 Traditional FD => BSSR (BURAK ADMIN)=> EJS 
 MODERN FD => SPA  (USER's application)=> REACT 
 */
+
+
+/* J-TASK: 
+
+Shunday function yozing, u string qabul qilsin va string ichidagi eng uzun sozni qaytarsin.
+MASALAN: findLongestWord("I come from Uzbekistan") return "Uzbekistan"
+*/
+
+
+function getLongestWord(sentence :string) {
+ let words = sentence.split(" ");
+
+ let longest = "";
+
+ for(let word of words) {
+   if(word.length > longest.length) {
+     longest = word;
+   }
+ }
+ console.log(longest);
+  return longest;
+}
+
+getLongestWord("I am from Uzbekistan");
