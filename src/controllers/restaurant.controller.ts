@@ -3,7 +3,7 @@ import { MemberInput, LoginInput, AdminRequest } from "../libs/types/member";
 import {T} from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { MemberType } from "../libs/types/enums/member.enum";
-import { Message } from "../libs/types/Errors";
+import Errors, { Message, } from "../libs/types/Errors";
 
 const memberService = new MemberService();
 
@@ -28,6 +28,7 @@ restaurantController.goLogin = (req: Request, res: Response) => {
         res.render("login");
     } catch (err) {
      console.log("something went wrong", err);
+     res.redirect("/admin")
     }
     }
 
@@ -57,8 +58,8 @@ restaurantController.goLogin = (req: Request, res: Response) => {
           });
 
          } catch (err) {
-           console.log("something went wrong", err);
-           res.send(err);
+          const message = err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG
+          res.send(`<script> alert("${message}"); window.locaton.replace('admin/login')</script>`)
      }
        }
 
@@ -83,7 +84,23 @@ restaurantController.goLogin = (req: Request, res: Response) => {
 
          } catch (err) {
            console.log("something went wrong", err);
-          res.send(err);
+           const message = err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG
+           res.send(`<script> alert("${message}"); window.locaton.replace('admin/signup')</script>`)
+     }
+       }
+
+       restaurantController.logout = async (
+        req: AdminRequest,
+        res: Response
+         ) => {
+        try {
+            console.log("logout");
+            req.session.destroy(function() {
+              res.redirect("/admin");
+            })
+         } catch (err) {
+           console.log("logout went wrong", err);
+          res.redirect("/admin");
      }
        }
 
