@@ -1,8 +1,9 @@
 import express, { Request, Response} from "express";
-import { MemberInput, LoginInput } from "../libs/types/member";
+import { MemberInput, LoginInput, AdminRequest } from "../libs/types/member";
 import {T} from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { MemberType } from "../libs/types/enums/member.enum";
+import { Message } from "../libs/types/Errors";
 
 const memberService = new MemberService();
 
@@ -40,15 +41,21 @@ restaurantController.goLogin = (req: Request, res: Response) => {
      }
 
 
-    restaurantController.goLoginProcces = async(req: Request, res: Response) => {
+    restaurantController.goLoginProcces = async(
+      req: AdminRequest, 
+      res: Response
+      ) => {
         try {
             console.log("GoLoginProcces");
             console.log("body:", req.body);
             const input: LoginInput = req.body,
             result = await memberService.processLogin(input);
             //TODO: SESSIONS AUTHENTICATION
-
+            req.session.member = result;
+           req.session.save(function () {
             res.send(result);
+          });
+
          } catch (err) {
            console.log("something went wrong", err);
            res.send(err);
@@ -57,7 +64,10 @@ restaurantController.goLogin = (req: Request, res: Response) => {
 
 
 
-       restaurantController.proccessSignUp = async (req: Request, res: Response) => {
+       restaurantController.proccessSignUp = async (
+        req: AdminRequest,
+        res: Response
+         ) => {
         try {
             console.log("proccessSignUp");
             console.log("body", req.body);
@@ -66,13 +76,37 @@ restaurantController.goLogin = (req: Request, res: Response) => {
             newMember.memberType = MemberType.RESTAURANT;
             const result = await memberService.proccessSignup(newMember);
           //TODO: SESSIONS AUTHENTICATION
-
+          req.session.member = result;
+          req.session.save(function () {
             res.send(result);
+          });
+
          } catch (err) {
            console.log("something went wrong", err);
           res.send(err);
      }
        }
+
+       restaurantController.checkAuthSession = async (
+        req: AdminRequest,
+        res: Response
+         ) => { 
+          try {
+            console.log("checkAuthSession")
+            if(req.session?.member) res.send(`<script> alert("Hi, ${req.session.member.memberNick}")</script>`)
+            else {
+              res.send(`<script> alert("${Message.NOT_AUTHENTICATED}")</script>`);
+            }
+          } catch (err) {
+            console.log("Error, checkAuthSession", err);
+            res.send(err);
+          }
+          }
+         
+        
+
+           
+    
 
 
     export default restaurantController;
