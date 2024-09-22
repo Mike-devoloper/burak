@@ -129,21 +129,33 @@ K-TASK:
 Shunday function yozing, u string qabul qilsin va string ichidagi unli harflar sonini qaytarsin.
 MASALAN: countVowels("string") return 1;
 */
-function getVowels(string:string):number{
-  const vowels = 'auioe';
-  let numberOfVowels = 0;
+// function getVowels(string:string):number{
+//   const vowels = 'auioe';
+//   let numberOfVowels = 0;
 
-  for (let ele of string) {
-    if(vowels.includes(ele)) {
-      numberOfVowels++;
-    }
+//   for (let ele of string) {
+//     if(vowels.includes(ele)) {
+//       numberOfVowels++;
+//     }
   
-  }
-  return numberOfVowels;
+//   }
+//   return numberOfVowels;
+// }
+
+
+// console.log(getVowels("hello"));
+// console.log(getVowels("auieo"));
+
+/* L-TASK: 
+
+Shunday function yozing, u string qabul qilsin va string ichidagi hamma sozlarni chappasiga yozib va sozlar ketma-ketligini buzmasdan stringni qaytarsin.
+MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
+
+ */
+function getReversedWords(str: string) {
+  return str.split(' ')
+  .map(word => word.split('').reverse().join(''))
+  .join(' ');
 }
 
-
-console.log(getVowels("hello"));
-console.log(getVowels("auieo"));
-
-
+console.log(getReversedWords("we like coding"));
