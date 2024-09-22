@@ -23,7 +23,7 @@ productController.getAllProducts = (req: Request, res: Response) => {
 productController.createNewProduct = (req: Request, res: Response) => {
         try {
             console.log("createNewProduct");
-           
+           res.send("done");
             
             
         } catch (err) { //ERROR PROTECTION
