@@ -3,7 +3,7 @@ import { MemberInput, LoginInput, AdminRequest } from "../libs/types/member";
 import {T} from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { MemberType } from "../libs/types/enums/member.enum";
-import Errors, { Message, } from "../libs/types/Errors";
+import Errors, { HttpCode, Message, } from "../libs/types/Errors";
 
 const memberService = new MemberService();
 
@@ -54,7 +54,7 @@ restaurantController.goLogin = (req: Request, res: Response) => {
             //TODO: SESSIONS AUTHENTICATION
             req.session.member = result;
            req.session.save(function () {
-            res.send(result);
+            res.redirect("/admin/product/all");
           });
 
          } catch (err) {
@@ -71,21 +71,23 @@ restaurantController.goLogin = (req: Request, res: Response) => {
          ) => {
         try {
             console.log("proccessSignUp");
-            console.log("body", req.body);
-
+            const file = req.file;
+            if(!file) throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
             const newMember: MemberInput = req.body;
+            newMember.memberImage = file?.path;
             newMember.memberType = MemberType.RESTAURANT;
             const result = await memberService.proccessSignup(newMember);
+            newMember.memberPassword = "";
           //TODO: SESSIONS AUTHENTICATION
           req.session.member = result;
           req.session.save(function () {
-            res.send(result);
+            res.redirect("/admin/product/all");
           });
 
          } catch (err) {
            console.log("something went wrong", err);
            const message = err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG
-           res.send(`<script> alert("${message}"); window.locaton.replace('admin/signup')</script>`)
+           res.send(`<script> alert("${message}"); window.locaton.replace('/admin/signup')</script>`)
      }
        }
 

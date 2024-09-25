@@ -18,7 +18,7 @@ class MemberService {
         try {
         const result = await this.memberModel.create(input);
         result.memberPassword = "";
-        return result.toJSON();
+        return result;
          } catch (err) {
             console.error("Error model:signup", err);
             throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
@@ -57,13 +57,14 @@ class MemberService {
         .exec();
         console.log("exist:", exist);
         if(exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
-            console.log("before", input.memberPassword)
+            
             const salt = await bcrypt.genSalt();
             input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
-            console.log("after", input.memberPassword)
+           
 
         try {
             const result = await this.memberModel.create(input);
+            result.memberPassword = "";
         return result;
          } catch (err) {
             throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
