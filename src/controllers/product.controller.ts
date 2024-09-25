@@ -14,11 +14,11 @@ const productController: T = {};
 
 /*SSR*/
 
-productController.getAllProducts = (req: Request, res: Response) => {
+productController.getAllProducts = async (req: Request, res: Response) => {
     try {
         console.log("getAllProducts");
-   
-       res.render("products");
+        const data = await productService.getAllProducts()
+       res.render("products", {products: data});
 
     } catch (err) { //ERROR PROTECTION
         console.log("something went wrong", err);
