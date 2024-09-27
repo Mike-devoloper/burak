@@ -169,11 +169,31 @@ MASALAN: getSquareNumbers([1, 2, 3]) return [{number: 1, square: 1}, {number: 2,
  */
 
 
-function getSquareNumbers(arr: number[]) {
-  return arr.map(num => ({
-      number: num,
-      square: num * num
-  }));
+// function getSquareNumbers(arr: number[]) {
+//   return arr.map(num => ({
+//       number: num,
+//       square: num * num
+//   }));
+// }
+
+// console.log(getSquareNumbers([1, 2, 3]));
+
+/* N-TASK: 
+
+Shunday function yozing, u string qabul qilsin va string palindrom yani togri oqilganda ham, orqasidan oqilganda ham bir hil oqiladigan soz ekanligini aniqlab boolean qiymat qaytarsin.
+MASALAN: palindromCheck("dad") return true;  palindromCheck("son") return false;
+*/
+
+function palindromCheck(str) {
+
+  const cleanStr = str.replace(/\s+/g, '').toLowerCase();
+  
+  
+  const reversedStr = cleanStr.split('').reverse().join('');
+  
+  return cleanStr === reversedStr;
 }
 
-console.log(getSquareNumbers([1, 2, 3]));
+
+console.log(palindromCheck("dad")); 
+console.log(palindromCheck("son")); 
