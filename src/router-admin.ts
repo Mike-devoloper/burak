@@ -3,6 +3,7 @@ import productController from './controllers/product.controller';
 const routerAdmin = express.Router();
 import restaurantController from './controllers/restaurant.controller';
 import  makeUpLoader  from './libs/types/utils/uploader';
+import router from './router';
 
 //Restaurant
 routerAdmin.get("/", restaurantController.goHome);
@@ -32,6 +33,14 @@ restaurantController.verifyRestaurant,
  );
 
 //User
+routerAdmin.get("/user/all", 
+restaurantController.verifyRestaurant, 
+restaurantController.getUsers);
+
+routerAdmin.post("/user/edit", 
+restaurantController.verifyRestaurant, 
+restaurantController.updateChosenUser);
+
 
 export default routerAdmin;
 
