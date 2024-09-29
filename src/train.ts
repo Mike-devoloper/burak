@@ -184,16 +184,38 @@ Shunday function yozing, u string qabul qilsin va string palindrom yani togri oq
 MASALAN: palindromCheck("dad") return true;  palindromCheck("son") return false;
 */
 
-function palindromCheck(str) {
+// function palindromCheck(str) {
 
-  const cleanStr = str.replace(/\s+/g, '').toLowerCase();
+//   const cleanStr = str.replace(/\s+/g, '').toLowerCase();
   
   
-  const reversedStr = cleanStr.split('').reverse().join('');
+//   const reversedStr = cleanStr.split('').reverse().join('');
   
-  return cleanStr === reversedStr;
+//   return cleanStr === reversedStr;
+// }
+
+
+// console.log(palindromCheck("dad")); 
+// console.log(palindromCheck("son")); 
+
+
+/* O-TASK: 
+
+Shunday function yozing, u har xil valuelardan iborat array qabul qilsin va array ichidagi sonlar yigindisini hisoblab chiqqan javobni qaytarsin.
+MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
+*/
+
+function calculateSumOfNumbers(arr) {
+  return arr.reduce((sum, value) => {
+      if (typeof value === 'number' && !isNaN(value)) {
+          return sum + value;
+      } else if (typeof value === 'string' && !isNaN(Number(value))) {
+          return sum + Number(value); 
+      }
+  
+      return sum;
+  }, 0);
 }
 
+console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35])); 
 
-console.log(palindromCheck("dad")); 
-console.log(palindromCheck("son")); 
