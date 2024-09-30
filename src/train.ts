@@ -206,16 +206,14 @@ MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
 */
 
 function calculateSumOfNumbers(arr) {
-  return arr.reduce((sum, value) => {
-      if (typeof value === 'number' && !isNaN(value)) {
-          return sum + value;
-      } else if (typeof value === 'string' && !isNaN(Number(value))) {
-          return sum + Number(value); 
+  return arr.reduce((sum, item) => {
+      if (typeof item === 'number') {
+          return sum + item;
       }
-  
       return sum;
   }, 0);
 }
 
 console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35])); 
+
 
