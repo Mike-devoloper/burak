@@ -22,6 +22,29 @@ $(function() {
         $(".dish-container").slideToggle(100);
         $("#process-btn").css("display", "flex");
     })
+
+    $(".new-product-status").on("change", async function(e) {
+        const id = e.target.id;
+        const productStatus = $(`#${id}.new-product-status`).val();
+        console.log(id);
+        console.log(productStatus);
+
+        try {
+            const response = await axios.post(`/admin/product/${id}`, {productStatus: productStatus});
+            const result = response.data;
+            console.log(result);
+
+            if(result.data){
+                console.log("product updated");
+                $(".new-product-status").blur()
+            } else {
+                alert("product update failed");
+            }
+        } catch(err) {
+            console.log()
+            alert("Product update failed!")
+        }
+    })
 })
 function validateForm() {
     const productName = $(".product-name").val();
