@@ -205,15 +205,26 @@ Shunday function yozing, u har xil valuelardan iborat array qabul qilsin va arra
 MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
 */
 
-function calculateSumOfNumbers(arr) {
-  return arr.reduce((sum, item) => {
-      if (typeof item === 'number') {
-          return sum + item;
-      }
-      return sum;
-  }, 0);
+// function calculateSumOfNumbers(arr) {
+//   return arr.reduce((sum, item) => {
+//       if (typeof item === 'number') {
+//           return sum + item;
+//       }
+//       return sum;
+//   }, 0);
+// }
+
+// console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35])); 
+
+
+/* P-TASK: 
+Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni qaytarsin qaytarsin.
+MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
+*/
+
+function objectToArray(object) {
+  const result = Object.keys(object).map((key) => [key, object [key]]);
+  console.log(result);
 }
 
-console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35])); 
-
-
+objectToArray({a: 10, b: 20});
