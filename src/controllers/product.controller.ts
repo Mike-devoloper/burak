@@ -40,7 +40,7 @@ productController.createNewProduct = async (req: AdminRequest, res: Response) =>
 
             await productService.createNewProduct(data)
             res.send(
-                `<script> alert("Successfully created !"); window.locaton.replace('/admin/product/all')</script>`
+                `<script> alert("Successfully created !"); window.location.replace('/admin/product/all')</script>`
                 );
             
             
