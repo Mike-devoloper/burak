@@ -1,7 +1,7 @@
 import MemberModel from "../schema/Member.model";
 import { LoginInput, Member, MemberInput, MemberUpdateInput } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/types/Errors";
-import {MemberType} from "../libs/types/enums/member.enum"
+import {MemberStatus, MemberType} from "../libs/types/enums/member.enum"
 import * as bcrypt from "bcryptjs"
 import { shapeIntoMongooseObjectid } from "../libs/types/config";
 class MemberService {
@@ -26,17 +26,18 @@ class MemberService {
          }
         }
          public async login(input: LoginInput):Promise<Member> {
-            //TODO: consider member status later
             const member = await this.memberModel
             .findOne(
-                {memberNick: input.memberNick}, 
-                {memberNick: 1, memberPassword: 1}
+                {memberNick: input.memberNick, memberStatus: {$ne: MemberStatus.DELETE}}, 
+                {memberNick: 1, memberPassword: 1, memberStatus: 1}
                 )
             .exec();
 
             if(!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMEBER_NICK);
-
-            //const isMatch = input.memberPassword === member.memberPassword;
+            else if(member.memberStatus === MemberStatus.BLOCK) {
+                throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER)
+            }
+            
             const isMatch = await bcrypt.compare(
                 input.memberPassword, 
                 member.memberPassword);
