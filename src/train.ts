@@ -222,9 +222,32 @@ Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib
 MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
 */
 
-function objectToArray(object) {
-  const result = Object.keys(object).map((key) => [key, object [key]]);
-  console.log(result);
+// function objectToArray(object) {
+//   const result = Object.keys(object).map((key) => [key, object [key]]);
+//   console.log(result);
+// }
+
+// objectToArray({a: 10, b: 20});
+
+/* Q-TASK:
+
+Shunday function yozing, u 2 ta parametrgga ega bolib birinchisi object, ikkinchisi string. Agar string parametr objectni propertysi bolsa true bolmasa false qaytarsin.
+MASALAN: hasProperty({name: "BMW", model: "M3"}, "model") return true; hasProperty({name: "BMW", model: "M3"}, "year") return false
+*/
+
+function hasProperty(object, string) {
+ let exist = false;
+ let str = string;
+ for (let key in object) {
+  //@ts-ignore
+   if(key === str) {
+     exist = true
+   }
+ }
+ console.log(exist);
+ return exist;
 }
 
-objectToArray({a: 10, b: 20});
+hasProperty({name: "BMW", model: "M3"}, "model");
+
+
