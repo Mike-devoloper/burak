@@ -235,19 +235,46 @@ Shunday function yozing, u 2 ta parametrgga ega bolib birinchisi object, ikkinch
 MASALAN: hasProperty({name: "BMW", model: "M3"}, "model") return true; hasProperty({name: "BMW", model: "M3"}, "year") return false
 */
 
-function hasProperty(object, string) {
- let exist = false;
- let str = string;
- for (let key in object) {
-  //@ts-ignore
-   if(key === str) {
-     exist = true
-   }
- }
- console.log(exist);
- return exist;
+// function hasProperty(object, string) {
+//  let exist = false;
+//  let str = string;
+//  for (let key in object) {
+//   //@ts-ignore
+//    if(key === str) {
+//      exist = true
+//    }
+//  }
+//  console.log(exist);
+//  return exist;
+// }
+
+// hasProperty({name: "BMW", model: "M3"}, "model");
+
+
+/*R-TASK:
+
+Shunday function yozing, u string parametrga ega bolsin. String "1+2" holatda pass qilinganda string ichidagi sonlar yigindisini number holatda qaytarsin.
+MASALAN: calculate("1+3") return 4;
+ */
+
+function calculate(str) {
+  let result;
+  
+  if (typeof str === "string") {
+    try {
+      result = eval(str);
+    } catch (error) {
+      console.error("Invalid expression:", error);
+    }
+  } else {
+    result = str;
+  }
+
+  console.log(result);
+  return result;
 }
 
-hasProperty({name: "BMW", model: "M3"}, "model");
+calculate("2+2");
+
 
 
