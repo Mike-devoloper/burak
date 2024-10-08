@@ -251,30 +251,26 @@ MASALAN: hasProperty({name: "BMW", model: "M3"}, "model") return true; hasProper
 // hasProperty({name: "BMW", model: "M3"}, "model");
 
 
-/*R-TASK:
+/*S-TASK:
 
-Shunday function yozing, u string parametrga ega bolsin. String "1+2" holatda pass qilinganda string ichidagi sonlar yigindisini number holatda qaytarsin.
-MASALAN: calculate("1+3") return 4;
+Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
+MASALAN: missingNumber([3, 0, 1]) return 2
  */
 
-function calculate(str) {
-  let result;
-  
-  if (typeof str === "string") {
-    try {
-      result = eval(str);
-    } catch (error) {
-      console.error("Invalid expression:", error);
-    }
-  } else {
-    result = str;
-  }
+function findMissingNumber(arr) {
 
-  console.log(result);
-  return result;
+  const n = arr.length; 
+  const expectedSum = (n * (n + 1)) / 2;
+
+  const actualSum = arr.reduce((acc, num) => acc + num, 0);
+
+  return expectedSum - actualSum;
 }
 
-calculate("2+2");
+console.log(findMissingNumber([3, 0, 1])); 
+
+
+
 
 
 
